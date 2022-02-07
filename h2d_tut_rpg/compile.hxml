@@ -1,0 +1,11 @@
+-lib heaps
+#-lib hlsdl
+-cp src
+-main GameApp
+#-hl game_executable_with_hashlink.hl
+-js script_to_embed_in_html_file.js
+#-hl testsuccess.hl
+-D windowSize=800x600
+-D windowTitle=HeapsIO sample game (RPG)
+# include a directory for the game's sprite and audio resources:
+-p res
