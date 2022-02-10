@@ -55,6 +55,8 @@ import entities.*;
         var origin = new h2d.Bitmap( h2d.Tile.fromColor(0xFF0000,2,2) );
         var t = new h2d.Text( GameApp.getMyFont(), origin ); t.text = "Origin (0,0)";
         this.add( origin, LAYER_WORLD );
+
+        GameApp.app.engine.backgroundColor = 0xFF267326; // this will color the background in "lawn" green
     }
     public function update() {
         for( ent in gameObjects ) // this is a very minimalisic way to call each entities update function each frame

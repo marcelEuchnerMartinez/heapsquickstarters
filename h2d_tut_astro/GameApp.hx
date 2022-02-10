@@ -1,16 +1,12 @@
-// note: init. resources by cond. comp. for rpg
-
 import h2d.Bitmap;
 import hxd.res.DefaultFont;
 
 /**
- * The main class including all other classes here in the code.
+ * A space ship game: "Astro shooter"
  */
 class GameApp extends hxd.App {
     
     var intro_as_object : h2d.Object;
-
-    //var rocks : Array<h2d.Object> = [];
 
     var player : Player;
     var player_health_bar : h2d.Graphics;
@@ -88,12 +84,12 @@ class GameApp extends hxd.App {
         // add random rockets every x seconds
         var timer = new haxe.Timer( 2 * 1000 ); // 2000ms = 2 seconds
         timer.run = () -> {
+            // this is a dynamic function
             if( !gameIsPaused ){
-                // this is a dynamic function
                 var number_of_rocks : Int = 1 + Math.floor( hxd.Math.random( Math.floor(score/5) ) ); // with score comes difficulty >:)
                 for( i in 0...number_of_rocks ){
                     var rock = new Rock( s2d );
-                    var random_distance = 300 + hxd.Math.random( 200 );
+                    var random_distance = 600 + hxd.Math.random( 300 );
                     var random_angle = hxd.Math.PI * hxd.Math.random( 2 ); // two PI make one full circle in radians
                     rock.rotate( random_angle );
                     rock.setPosition(
@@ -132,6 +128,7 @@ class GameApp extends hxd.App {
                     // show "game over" message
                     var t = new h2d.Text( DefaultFont.get(), s2d ); t.text = "GAME OVER"; t.setPosition( s2d.width/2, s2d.height/2 );
                     t.textAlign = h2d.Text.Align.Center;
+                    t.scale(2);
                     // remove message after 4 seconds...
                     haxe.Timer.delay(
                         ()->{
@@ -204,7 +201,7 @@ class GameApp extends hxd.App {
 }
 
 //
-// our game objects AKA entities
+// our "game objects" AKA "entities"
 //
 
 class Player extends h2d.Bitmap {
@@ -257,7 +254,7 @@ class Laser extends h2d.Graphics {
 }
 
 class Rock extends h2d.Bitmap {
-    public var speed : Float = 1;
+    public var speed : Float;
     public function new( s2d:h2d.Scene ) {
         var tile = h2d.Tile.fromColor( 0x505050, 30, 30 ).center();
         super( tile, s2d );
@@ -269,13 +266,4 @@ class Rock extends h2d.Bitmap {
             subrock.setPosition( -15+hxd.Math.random(30), -15+hxd.Math.random(30) ); // will be relative to parent ;)
         }
     }
-    /*public function move() {
-        var direction = r.rotation;
-        //var speed = 8;//0.2 + ( 200 / hxd.Math.distance( player.x - r.x, player.y - r.y ) ); // move faster when closer to player!
-        // move according to its direction
-        this.(
-            this.x + (hxd.Math.cos(direction) * speed),
-            this.y + (hxd.Math.sin(direction) * speed)
-        );
-    }*/
 }

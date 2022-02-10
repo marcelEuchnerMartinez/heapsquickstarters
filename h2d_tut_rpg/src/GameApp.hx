@@ -32,8 +32,11 @@ class GameApp extends hxd.App {
     static function main() {
         trace("inside my main function");
         trace("(You will need *trace* a lot to actively debug your game)");
-        //hxd.Res.initLocal(); // important! allows the app access to our game's resource files: images (sprites), audio, etc.
-        hxd.Res.initEmbed();// use hxd.Res.initEmbed(); for html5/js
+        #if sys
+        hxd.Res.initLocal(); // important! allows the app access to our game's resource files: images (sprites), audio, etc.
+        #else
+        hxd.Res.initEmbed(); // use hxd.Res.initEmbed(); for html5/js
+        #end
         app = new GameApp(); // now HeapsIO starts...
     }
 

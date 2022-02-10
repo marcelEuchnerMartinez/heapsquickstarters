@@ -17,8 +17,8 @@ class Player extends Entity {
             // we transform the windows's mouse position so the position in the world
             var mp = new h2d.col.Point( scene.mouseX, scene.mouseY );
             var mp_inWorldCam = mp.clone(); /*transform point correctly*/ scene.camera.sceneToCamera( mp_inWorldCam );
-            var mx = mp.x;
-            var my = mp.y;
+            var mx = mp_inWorldCam.x;
+            var my = mp_inWorldCam.y;
             //
             if( hxd.Math.distance(x-mx,y-my)>8 ){ // to avoid "vibrating" check if mouse is not too close
                 var direction_in_radians = hxd.Math.atan2( my - this.y, mx - this.x );
