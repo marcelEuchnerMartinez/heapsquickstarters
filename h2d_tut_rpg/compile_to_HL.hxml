@@ -1,10 +1,9 @@
 -lib heaps
 
+# compile with HashLink:
 -lib hlsdl
 -hl game_executable_with_hashlink.hl
-#-hl testsuccess.hl
 
-#-js script_to_embed_in_html_file.js
 
 
 -cp src

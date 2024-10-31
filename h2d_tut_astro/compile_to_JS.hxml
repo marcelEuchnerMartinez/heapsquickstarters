@@ -1,11 +1,8 @@
 -lib heaps
 
-# compile with HashLink:
-#-lib hlsdl
-#-hl game_executable_with_hashlink.hl
-
-# or compile to html5/js:
+# compile to html5/js:
 -js script_to_embed_in_html_file.js
+
 
 -main GameApp
 
