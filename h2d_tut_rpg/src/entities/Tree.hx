@@ -7,6 +7,7 @@ class Tree extends Entity {
         tile.dx -= tile.width/2;
         tile.dy -= tile.height;
 
-        this.sprite = new h2d.Bitmap(tile, scene);
+        this.sprite = new h2d.Bitmap(tile);
+        scene.add( sprite, layer );
     }
 }

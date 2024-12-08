@@ -13,3 +13,10 @@
 -D windowTitle=HeapsIO sample game (RPG)
 # include a directory for the game's sprite and audio resources:
 -p res
+
+
+# Use hot reload:
+#-D hot-reload
+# Run HashLink file with
+#       hl --hot-reload game_executable_with_hashlink.hl
+# after recompiling the running app also gets updated

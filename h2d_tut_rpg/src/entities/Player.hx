@@ -13,10 +13,12 @@ class Player extends Entity {
         if(hxd.Key.isDown(hxd.Key.D)||hxd.Key.isDown(hxd.Key.RIGHT)) {this.x += speed;}
         if(hxd.Key.isDown(hxd.Key.S)||hxd.Key.isDown(hxd.Key.DOWN )) {this.y += speed;}
         if(hxd.Key.isDown(hxd.Key.MOUSE_LEFT)){
+
             // ok, I know this is a bit terrible...
-            // we transform the windows's mouse position so the position in the world
+            // we transform the windows's mouse position to get the position in the world
             var mp = new h2d.col.Point( scene.mouseX, scene.mouseY );
-            var mp_inWorldCam = mp.clone(); /*transform point correctly*/ scene.camera.sceneToCamera( mp_inWorldCam );
+            var mp_inWorldCam = mp.clone();
+            scene.camera.screenToCamera( mp_inWorldCam ); // transform point correctly
             var mx = mp_inWorldCam.x;
             var my = mp_inWorldCam.y;
             //
@@ -41,6 +43,8 @@ class Player extends Entity {
 
         this.sprite = new h2d.Bitmap(tile, scene);
         var infotext_about_entity = new h2d.Text( hxd.res.DefaultFont.get(), sprite ); infotext_about_entity.text = "Player";
+
+        scene.add( sprite, layer );
     }
 }
 

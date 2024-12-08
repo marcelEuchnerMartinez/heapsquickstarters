@@ -10,22 +10,11 @@ import entities.*;
  class Scene_Game extends h2d.Scene {
     public var gameObjects : Array<Entity> = [];
     public var player : Player;
-    public final LAYER_WORLD : Int = 0; // layer for entities and stuff in the game world
-    public final LAYER_HUD   : Int = 1; // layer for UI, in-game menu buttons etc.
+    static public final LAYER_WORLD : Int = 0; // layer for entities and stuff in the game world
+    static public final LAYER_HUD   : Int = 1; // layer for UI, in-game menu buttons etc.
     var info_about_camera : h2d.Text; // declare reference to be able to update this in function
     public function new() {super();}
     public function init() {
-        
-        // add HUD-menu-buttons
-        new InGameHUDMenu( this, LAYER_HUD );
-
-        // info in game explains button control
-        var t = new h2d.Text( GameApp.getMyFont() ); t.text = "Use W-A-S-D / arrow keys / mouse to move the player around.\nUse mouse wheel to zoom in/out";
-        this.add( t, LAYER_HUD );
-        // info about camera
-        var t = new h2d.Text( GameApp.getMyFont() );
-        this.add( t, LAYER_HUD );
-        info_about_camera = t; // save object reference here (so we can update it in update function)
 
         // place all entities in this scenario/level
         // some trees
@@ -50,6 +39,17 @@ import entities.*;
 		camera_only_for_HUD.layerVisible = (L) -> (L == LAYER_HUD); // only show UI layer in this camera
         this.addCamera(camera_only_for_HUD);
         this.interactiveCamera = camera_only_for_HUD; // tells scene to use this camera for button interaction (h2d.Interactive)
+        
+        // add HUD-menu-buttons
+        new InGameHUDMenu( this, LAYER_HUD );
+
+        // info in game explains button control
+        var t = new h2d.Text( GameApp.getMyFont() ); t.text = "Use W-A-S-D / arrow keys / mouse to move the player around.\nUse mouse wheel to zoom in/out";
+        this.add( t, LAYER_HUD );
+        // info about camera
+        var t = new h2d.Text( GameApp.getMyFont() );
+        this.add( t, LAYER_HUD );
+        info_about_camera = t; // save object reference here (so we can update it in update function)
 
         // landmark in the world to represent the origin point
         var origin = new h2d.Bitmap( h2d.Tile.fromColor(0xFF0000,2,2) );

@@ -1,5 +1,6 @@
 package;
 
+import scenes.Scene_Game;
 import GameApp;
 
 /**
@@ -11,10 +12,12 @@ import GameApp;
     public var sprite : h2d.Object; // can be anything that extends h2d.Object
     public var x : Float = 0;
     public var y : Float = 0;
+    public var layer : Int = 0;
 
     public function new( scene:h2d.Scene ) {
         GameApp.app.world.gameObjects.push( this );
         this.scene = scene;
+        layer = Scene_Game.LAYER_WORLD;
     }
     /**
      * Call super.update() when overriding.
